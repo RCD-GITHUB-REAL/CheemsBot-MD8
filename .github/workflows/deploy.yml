@@ -1,9 +1,16 @@
 name: Deploy WhatsApp Bot
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
+    inputs:
+      repo:
+        description: 'Repository URL'
+        required: true
+        type: string
+      token:
+        description: 'GitHub Token'
+        required: true
+        type: string
 
 jobs:
   deploy:
@@ -22,6 +29,6 @@ jobs:
         run: npm install
 
       - name: Deploy bot
-        run: npm run deploy # Adjust this to your deploy script
+        run: npm run deploy # Replace this with your actual deploy script
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure you have necessary secrets configured
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
