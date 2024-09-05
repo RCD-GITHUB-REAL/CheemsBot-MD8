@@ -1,0 +1,27 @@
+name: Deploy WhatsApp Bot
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14' # Specify your Node.js version
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Deploy bot
+        run: npm run deploy # Adjust this to your deploy script
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure you have necessary secrets configured
